@@ -79,8 +79,8 @@ namespace TiltbrushToolkit
                             file.SketchInformation.Strokes[i].BrushColor[2] = br.ReadSingle();
                             file.SketchInformation.Strokes[i].BrushColor[3] = br.ReadSingle();
                             file.SketchInformation.Strokes[i].BrushSize = br.ReadSingle();
-                            file.SketchInformation.Strokes[i].StrokeMask = br.ReadInt32();
-                            file.SketchInformation.Strokes[i].CPMask = br.ReadInt32();
+                            file.SketchInformation.Strokes[i].StrokeMask = (Stroke.StrokeMaskEnum)br.ReadInt32();
+                            file.SketchInformation.Strokes[i].CPMask = (Stroke.CPMaskEnum)br.ReadInt32();
                             file.SketchInformation.Strokes[i].Flags = br.ReadInt32();
                             if (file.SketchInformation.Strokes[i].Flags != 0)
                             {
@@ -173,8 +173,8 @@ namespace TiltbrushToolkit
                         bw.Write(item.BrushColor[2]);
                         bw.Write(item.BrushColor[3]);
                         bw.Write(item.BrushSize);
-                        bw.Write(item.StrokeMask);
-                        bw.Write(item.CPMask);
+                        bw.Write((int)item.StrokeMask);
+                        bw.Write((int)item.CPMask);
                         bw.Write(item.Flags);
                         if (item.Flags != 0)
                         {
