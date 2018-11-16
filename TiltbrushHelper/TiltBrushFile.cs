@@ -81,10 +81,13 @@ namespace TiltbrushToolkit
                             file.SketchInformation.Strokes[i].BrushSize = br.ReadSingle();
                             file.SketchInformation.Strokes[i].StrokeMask = (Stroke.StrokeMaskEnum)br.ReadInt32();
                             file.SketchInformation.Strokes[i].CPMask = (Stroke.CPMaskEnum)br.ReadInt32();
-                            file.SketchInformation.Strokes[i].Flags = br.ReadInt32();
-                            if (file.SketchInformation.Strokes[i].Flags != 0)
+                            if (file.SketchInformation.Strokes[i].StrokeMask == Stroke.StrokeMaskEnum.Flags || file.SketchInformation.Strokes[i].StrokeMask == Stroke.StrokeMaskEnum.FlagsAndScale)
                             {
-                                file.SketchInformation.Strokes[i].Scale = br.ReadSingle();
+                                file.SketchInformation.Strokes[i].Flags = br.ReadInt32();
+                                if (file.SketchInformation.Strokes[i].StrokeMask == Stroke.StrokeMaskEnum.FlagsAndScale)
+                                {
+                                    file.SketchInformation.Strokes[i].Scale = br.ReadSingle();
+                                }
                             }
                             var totalPoints = br.ReadInt32();
                             if (totalPoints < 10000)
@@ -175,10 +178,13 @@ namespace TiltbrushToolkit
                         bw.Write(item.BrushSize);
                         bw.Write((int)item.StrokeMask);
                         bw.Write((int)item.CPMask);
-                        bw.Write(item.Flags);
-                        if (item.Flags != 0)
+                        if (item.StrokeMask == Stroke.StrokeMaskEnum.Flags || item.StrokeMask == Stroke.StrokeMaskEnum.FlagsAndScale)
                         {
-                            bw.Write(item.Scale);
+                            bw.Write(item.Flags);
+                            if (item.StrokeMask == Stroke.StrokeMaskEnum.FlagsAndScale)
+                            {
+                                bw.Write(item.Scale);
+                            }
                         }
                         bw.Write(item.ControlPoints.Length);
                         foreach (var point in item.ControlPoints)
