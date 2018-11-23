@@ -3,6 +3,7 @@
 Parse, manipulate and write .tilt files within a managed .NET library.
 
 This project was created to complete part of my Master's thesis which looked into the world of Virtual Reality art.  The tools are based off the [Tilt Brush Toolkit](https://github.com/googlevr/tilt-brush-toolkit) project operated by the Tilt Brush team.  
+
 An example of how these tools can be used to generate Tilt Brush files is shown below.
 
 ![Moai Sketch Example](Media/Moais_01.png)
@@ -15,7 +16,7 @@ This project has not been endorsed or checked by Google or the TiltBrush team, t
 
 Quick sample showing how to parse a .tilt file from disk, change the stroke colour and position details and then write the data back to a new file.
 
-###Original Image
+### Original Image
 ![Small blue square in Tilt Brush](Media/Example_01.png)
 
 ```csharp
@@ -44,7 +45,7 @@ public static void ExampleAmendExistingCode()
 }
 ```
 
-###Finished Image
+### Finished Image
 ![Small red square in Tilt Brush](Media/Updated-Example.png)
 
 ---
@@ -98,7 +99,7 @@ Another quick sample showing how to create a brand new .tilt file from scratch
 	file.ConvertToTiltFile(saveLocation);
 }
 ```
-###Final Image
+### Final Image
 
 ![Short blue line in Tilt Brush](Media/Example-Create-New.png)
 
