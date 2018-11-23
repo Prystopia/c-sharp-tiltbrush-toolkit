@@ -3,6 +3,9 @@
 Parse, manipulate and write .tilt files within a managed .NET library.
 
 This project was created to complete part of my Master's thesis which looked into the world of Virtual Reality art.  The tools are based off the [Tilt Brush Toolkit](https://github.com/googlevr/tilt-brush-toolkit) project operated by the Tilt Brush team.  
+An example of how these tools can be used to generate Tilt Brush files is shown below.
+
+[Moai Sketch Example](Media/Moais_01.png)
 
 ## Important Information
 
@@ -11,6 +14,9 @@ This project has not been endorsed or checked by Google or the TiltBrush team, t
 ## Code Example
 
 Quick sample showing how to parse a .tilt file from disk, change the stroke colour and position details and then write the data back to a new file.
+
+###Original Image
+[Small blue square in Tilt Brush](Media/Example_01.png)
 
 ```csharp
 public static void ExampleAmendExistingCode()
@@ -37,18 +43,22 @@ public static void ExampleAmendExistingCode()
 	tiltFile.ConvertToTiltFile(saveLocation);
 }
 ```
+
+###Finished Image
+[Small red square in Tilt Brush](Media/Updated-Example.png)
+
 ---
 Another quick sample showing how to create a brand new .tilt file from scratch
 
 ```csharp
  public static void ExampleCreateNewCode()
 {
-	//the project will always for the provided paths to include the ".tilt" file extension
+	//the project will always look for the provided paths to include the ".tilt" file extension
 	string saveLocation = @"Example-Create-New.tilt";
 	var file = new TiltBrushFile();
 	file.MetadataInformation.Authors = new string[1] { "Prystopia" };
 	file.MetadataInformation.EnvironmentPreset = new Guid("ab080599-e465-4a6d-8587-43bf495af68b");
-	file.MetadataInformation.BrushIndex = new Guid[1] { new Guid("280c0a7a-aad8-416c-a7d2-df63d129ca70") };
+	file.MetadataInformation.AddBrush(Metadata.BrushType.Icing);
 	file.SketchInformation.FileName = "New Test";
 	//as far as I can tell these are fixed values, however it's worth checking a file from your own installation, just in case they do change.
 	file.SketchInformation.HeaderInfo.Sentinal = 3312887245;
@@ -56,7 +66,7 @@ Another quick sample showing how to create a brand new .tilt file from scratch
 	file.SketchInformation.HeaderInfo.Unused = 0;
 	file.SketchInformation.Strokes = new Stroke[1];
 	file.SketchInformation.Strokes[0] = new Stroke();
-	file.SketchInformation.Strokes[0].BrushIndex = 0;
+	file.SketchInformation.Strokes[0].BrushIndex = file.MetadataInformation.GetBrushIndex(Metadata.BrushType.Icing);
 	file.SketchInformation.Strokes[0].BrushSize = 0.5f;
 	file.SketchInformation.Strokes[0].BrushColor = new float[] { 0.4f, 0.3f, 0.8f, 1f };
 	//these values define the extension information available in the file
@@ -88,6 +98,10 @@ Another quick sample showing how to create a brand new .tilt file from scratch
 	file.ConvertToTiltFile(saveLocation);
 }
 ```
+###Final Image
+
+[Short blue line in Tilt Brush](Media/Example-Create-New.png)
+
 
 ## Contributing
 

@@ -4,6 +4,7 @@ namespace TiltbrushToolkit
 {
     public class Stroke
     {
+        //not specifying as flags as this just adds something extra to worry about (when specifying more than one item) 
         public enum StrokeMaskEnum
         {
             Flags = 1,

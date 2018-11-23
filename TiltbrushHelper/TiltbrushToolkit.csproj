@@ -45,11 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\BrushIdAttribute.cs" />
     <Compile Include="ControlPoint.cs" />
     <Compile Include="ControlPointExtension.cs" />
     <Compile Include="Exceptions\BadHeaderException.cs" />
     <Compile Include="Exceptions\BadMetadataException.cs" />
     <Compile Include="Exceptions\BadTiltException.cs" />
+    <Compile Include="Exceptions\BrushNotFoundException.cs" />
     <Compile Include="Exceptions\FileConversionException.cs" />
     <Compile Include="Export.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
